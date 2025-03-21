@@ -34,19 +34,49 @@ public class LogAnalyzer
      * Question 9: If we use "<=" instead of "<", it will give us n error because it surpasses the index.
      *             It goes to index 24 instead of staying at 23.
      */
-
+    
     /**
      * Create an object to analyze hourly web accesses.
      */
-    public LogAnalyzer()
+    public LogAnalyzer(String filename)
     { 
         // Create the array object to hold the hourly
         // access counts.
         hourCounts = new int[24];
         // Create the reader to obtain the data.
-        reader = new LogfileReader();
+        reader = new LogfileReader(filename);
     }
-
+    
+    /**
+     * Print all the values in the marks array that are greater than mean.
+     * @param marks An array of marks values.
+     * @param mean The mean (average) mark.
+     */
+    public void printGreater(double[] marks, double mean)
+    {
+        for(int index = 0; index < marks.length; index++)
+        {
+            if(marks[index] > mean)
+            {
+                System.out.println(marks[index]);
+            }
+        }
+    }
+    
+    /**
+     * Return the number of accesses recorded in the log file.
+     */
+    public int numberOfAcceses()
+    {
+        int total = 0;
+        for (int hour = 0; hour < hourCounts.length; hour++)
+        {
+            total = total + hourCounts[hour];
+        }
+        //Add the value in each element of hourCounts to // total. ...
+        return total;
+    }
+    
     /**
      * Analyze the hourly access data from the log file.
      */
