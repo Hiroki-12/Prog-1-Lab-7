@@ -33,6 +33,7 @@ public class LogAnalyzer
      * Question 8: double[] prices = new double(50); -> double[]prices = new double[50];
      * Question 9: If we use "<=" instead of "<", it will give us n error because it surpasses the index.
      *             It goes to index 24 instead of staying at 23.
+     * Question 17: The first hour that has the same value.
      */
     
     /**
@@ -45,6 +46,40 @@ public class LogAnalyzer
         hourCounts = new int[24];
         // Create the reader to obtain the data.
         reader = new LogfileReader(filename);
+    }
+    
+    public int busiestHour()
+    {
+        int busiest = -1;
+        int busiestHour = 0;
+        
+        for(int hour = 0; hour < hourCounts.length; hour++)
+        {
+            if (hourCounts[hour] > busiest)
+            {
+                busiest = hourCounts[hour];
+                busiestHour = hour;
+            }
+        }
+        
+        return busiestHour;
+    }
+    
+    public int quietestHour()
+    {
+        int quietest = -1;
+        int quietestHour = 0;
+        
+        for(int hour = 0; hour < hourCounts.length; hour++)
+        {
+            if (hourCounts[hour] < quietest)
+            {
+                quietest = hourCounts[hour];
+                quietestHour = hour;
+            }
+        }
+        
+        return quietestHour;
     }
     
     /**
